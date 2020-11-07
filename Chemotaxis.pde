@@ -17,9 +17,14 @@ void setup() {
 
 void draw() {
   background(0);
- //for (int i = 0; i<500; i++) {
-    //(foodArray[i]).show();
-    // }
+ for (int i = 0; i<500; i++) {
+    (foodArray[i]).show();
+    }
+  if (mousePressed) {
+     for (int i = 0; i<500; i++) {
+      (foodArray[i]).repopulate();
+    }}
+    
   for (int i = 0; i<n; i++) {
     (preyArray[i]).show();
     (preyArray[i]).walk();
@@ -31,12 +36,12 @@ void draw() {
   if (dist((preyArray[i]).myX, (preyArray[i]).myY, aPredator.myX, aPredator.myY) < 25) {
       (preyArray[i]).die();
  }}
- //for (int i = 0; i<500; i++) {
-  //if (dist((foodArray[i]).myX, (foodArray[i]).myY, aPredator.myX, aPredator.myY) < 25) {
-      //(preyArray[i]).die();
- //}
- //}
- //I really wanted to make some plants that got eaten, but I couldn't figure out how to test if each prey touched each plant
+for (int i = 0; i<500; i++) {
+  for (int j = 0; j<1000; j++) {
+    if (dist((foodArray[i]).myX, (foodArray[i]).myY, (preyArray[j]).myX, (preyArray[j]).myY) < 2) {
+      (foodArray[i]).eaten();
+ }}}
+ 
  }
 class Predator {
   int myX, myY, myC;
@@ -81,6 +86,10 @@ class Food {
   void eaten() {
     myX = -100;
     myY = -100;
+  }
+  void repopulate() {
+    myX = (int) (Math.random()*500);
+    myY = (int) (Math.random()*500);
   }
 }
 
